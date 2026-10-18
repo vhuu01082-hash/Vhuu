@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050a12">
+<title>VHUU</title>
+<style>
+:root{--bg:#050a12;--panel:#0a1420;--line:#123344;--cyan:#00eaff;--blue:#078cff;--green:#00ef9b;--muted:#8197a9;--red:#ff4564}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#092133 0,#050a12 48%,#02050a 100%);color:#e9fbff;font:14px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh;padding:calc(14px + env(safe-area-inset-top)) 13px calc(28px + env(safe-area-inset-bottom))}
+.wrap{max-width:520px;margin:auto}.brand{font-size:23px;letter-spacing:2px;font-weight:900;color:var(--cyan);text-shadow:0 0 18px #00d9ff66;margin:7px 3px 14px}.brand small{display:block;color:#6d94a8;font-size:9px;letter-spacing:3px;margin-top:4px}
+.card{background:linear-gradient(145deg,#0b1723ee,#050b12f5);border:1px solid var(--line);border-radius:13px;padding:14px;margin-bottom:11px;box-shadow:0 8px 25px #0006}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{border:1px solid #163344;border-radius:8px;padding:10px;background:#07101a}.k{font-size:9px;color:#6e91a4;letter-spacing:1px}.v{font-size:12px;font-weight:800;margin-top:5px}.cyan{color:var(--cyan)}.green{color:var(--green)}.red{color:var(--red)}
+.keyrow{display:flex;gap:7px;margin-top:12px}.keyrow input{min-width:0;flex:1;background:#02070d;color:var(--cyan);border:1px solid #126074;border-radius:7px;padding:12px;font-size:13px;letter-spacing:2px;outline:none}.btn{border:0;border-radius:8px;padding:12px 11px;color:#001018;font-weight:900;background:linear-gradient(100deg,#00d8ff,#078bff);box-shadow:0 0 14px #00d9ff22;cursor:pointer}.btn.secondary{background:#102632;color:var(--cyan);border:1px solid #14516a}.btn.full{width:100%;margin-top:9px}.notice{font-size:10px;line-height:1.5;color:#7893a4;margin-top:9px}
+.section{font-size:10px;letter-spacing:2px;color:#6e9aad;font-weight:800;margin:18px 3px 8px}
+.feature{display:flex;align-items:center;gap:10px;border:1px solid #122b3a;border-radius:9px;padding:11px;background:#07111b;margin:7px 0}.ico{width:31px;height:31px;display:grid;place-items:center;background:#082b38;border:1px solid #125265;border-radius:8px;color:var(--cyan);font-weight:900}.meta{flex:1;min-width:0}.name{font-weight:800;font-size:12px}.desc{font-size:10px;color:#7290a2;margin-top:4px}.switch{appearance:none;width:39px;height:23px;border-radius:20px;background:#1a2b38;border:1px solid #34505e;position:relative;cursor:pointer;flex-shrink:0}.switch:before{content:"";position:absolute;top:3px;left:3px;width:15px;height:15px;background:#8193a0;border-radius:50%;transition:.18s}.switch:checked{background:#005b66;border-color:var(--cyan);box-shadow:0 0 12px #00eaff33}.switch:checked:before{left:19px;background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+.log{font-size:10px;color:#7b9eaf;line-height:1.8}.log span{color:var(--green)}footer{text-align:center;color:#385363;font-size:9px;letter-spacing:1px;margin:20px 0 5px}
+</style>
+</head>
+<body><main class="wrap">
+  <div class="brand">VHUU <small>CONTROL CENTER · iOS</small></div>
+  <div class="card">
+    <div class="stats">
+      <div class="stat"><div class="k">STATUS</div><div class="v red" id="status">LOCKED</div></div>
+      <div class="stat"><div class="k">SYSTEM</div><div class="v cyan">iOS · WEB CLIP</div></div>
+      <div class="stat"><div class="k">PROFILE</div><div class="v">VHUU</div></div>
+      <div class="stat"><div class="k">VERSION</div><div class="v cyan">v1.0</div></div>
+    </div>
+    <div class="keyrow"><input id="key" type="password" placeholder="NHẬP KEY..." autocomplete="off" aria-label="Nhập key"><button class="btn" id="unlock">MỞ KHÓA</button></div>
+    <div class="notice" id="message">Nhập key để mở giao diện demo. Key được kiểm tra trong trình duyệt và không gửi lên máy chủ.</div>
+    <button class="btn full" id="system">KÍCH HOẠT GIAO DIỆN</button>
+  </div>
+  <div class="section">TÍNH NĂNG · GIAO DIỆN MINH HỌA</div>
+  <div id="features"></div>
+  <div class="card"><div class="section" style="margin:0 0 8px">NHẬT KÝ</div><div class="log" id="log"><span>✓</span> Vhuu UI loaded<br><span>✓</span> Waiting for local key</div></div>
+  <div class="notice">Lưu ý: các công tắc chỉ là giao diện minh họa, không trực tiếp bật Aim Assist, ESP, No Recoil hoặc can thiệp game/iOS. KEY trong file này được kiểm tra cục bộ trong trình duyệt.</div>
+  <footer>VHUU · PERSONAL WEB CLIP</footer>
+</main>
+<script>
+const KEY="VhuuVip";
+const items=[
+["◎","Aim Assist","Giao diện mô phỏng"],
+["⌖","Crosshair Pro","Tâm ngắm minh họa"],
+["◈","ESP Visual","Chỉ là công tắc giao diện"],
+["↗","No Recoil","Không tác động trò chơi"],
+["ϟ","FPS Booster","Không thay đổi FPS thực tế"],
+["◉","Touch Optimizer","Không thay đổi cảm ứng iOS"],
+["⌁","Network Stabilizer","Không chỉnh cấu hình mạng"],
+["✓","System Status","Trạng thái demo"]
+];
+const host=document.getElementById("features");
+let isUnlocked=false;
+items.forEach((it,i)=>{const row=document.createElement("div");row.className="feature";row.innerHTML=`<div class="ico">${it[0]}</div><div class="meta"><div class="name">${it[1]}</div><div class="desc">${it[2]}</div></div><input class="switch" type="checkbox" aria-label="${it[1]}" disabled>`;row.querySelector("input").addEventListener("change",e=>{const msg=`Chức năng ${it[1]} ${e.target.checked?"đã bật (demo) ✅":"đã tắt ❌"}`;document.getElementById("message").textContent=msg;log(msg)});host.appendChild(row)});
+function log(s){const l=document.getElementById("log");l.innerHTML=`<span>✓</span> ${s}<br>`+l.innerHTML}
+document.getElementById("unlock").onclick=()=>{let ok=document.getElementById("key").value===KEY;document.getElementById("status").textContent=ok?"UNLOCKED":"LOCKED";document.getElementById("status").className="v "+(ok?"green":"red");document.getElementById("message").textContent=ok?"Key hợp lệ · Giao diện demo đã mở.":"Key không đúng. Hãy kiểm tra lại.";log(ok?"Key accepted locally":"Invalid key");host.querySelectorAll("input.switch").forEach(el=>el.disabled=!ok);const msg=ok?"Key hợp lệ. Đã mở khóa ứng dụng ✅":"Key không đúng. Vui lòng thử lại ❌";document.getElementById("message").textContent=msg};
+document.getElementById("system").onclick=()=>{const msg="Giao diện đã kích hoạt ✅";log(msg);document.getElementById("message").textContent=msg};
+document.getElementById("key").addEventListener("keydown",e=>{if(e.key==="Enter")document.getElementById("unlock").click()});
+</script></body></html>
